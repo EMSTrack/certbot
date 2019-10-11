@@ -24,7 +24,8 @@ RUN set -x && \
             -passout pass:cruzroja -passin pass:cruzroja \
             -subj "/C=US/ST=CA/L=San Diego/O=EMSTrack MQTT/OU=MQTT/CN=localhost" && \
     openssl x509 -req -in server.csr -CA my-ca.crt -CAkey my-ca.key -CAcreateserial \
-            -passin pass:cruzroja -out server.crt -days 180
+            -passin pass:cruzroja -out server.crt -days 180 && \
+    ls /etc/letsencrypt/live/localhost
 
 WORKDIR /opt/certbot
 
