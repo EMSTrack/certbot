@@ -13,7 +13,7 @@ WORKDIR /etc/letsencrypt/live/localhost
 RUN set -x && \
     sed -i'' \
         -e 's/RANDFILE/#RANDFILE/' \
-    /etc/ssl/openssl.cnf && \
+        /etc/ssl/openssl.cnf && \
     # https://mosquitto.org/man/mosquitto-tls-7.html
     # RUN openssl genrsa -des3 -passout pass:cruzroja -out server.key 2048
     openssl genrsa -passout pass:cruzroja -out server.key 2048 && \
@@ -29,4 +29,5 @@ RUN set -x && \
     openssl x509 -req -in server.csr -CA my-ca.crt -CAkey my-ca.key -CAcreateserial \
             -passin pass:cruzroja -out server.crt -days 180
 
+WORKDIR /opt/certbot
 ENTRYPOINT [ "certbot" ]
