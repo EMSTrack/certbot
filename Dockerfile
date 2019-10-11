@@ -2,10 +2,10 @@
 FROM certbot/certbot
 
 RUN set -x && \
-    apk --no-cache add openrc openssl && \
+    apk --no-cache add openssl && \
+    mkdir -p /etc/letsencrypt/live/localhost
 
 # generate certificates
-RUN mkdir -p /etc/letsencrypt/live/localhost
 WORKDIR /etc/letsencrypt/live/localhost
 
 # COPY --chown=mosquitto:mosquitto etc/mosquitto/certificates /etc/mosquitto/certificates
