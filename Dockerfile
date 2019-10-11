@@ -30,4 +30,7 @@ RUN set -x && \
             -passin pass:cruzroja -out server.crt -days 180
 
 WORKDIR /opt/certbot
+
+VOLUME ["/etc/letsencrypt", "/var/lib/letsencrypt"]
+
 ENTRYPOINT [ "certbot" ]
