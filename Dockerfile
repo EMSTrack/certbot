@@ -6,8 +6,8 @@ FROM certbot/certbot
 # https://github.com/openssl/openssl/issues/7754#issuecomment-444063355
 RUN set -x && \
     apk --no-cache add openssl && \
-    mkdir -p /etc/letsencrypt/live/localhost && \
-    cd /etc/letsencrypt/live/localhost && \
+    mkdir -p /etc/letsencrypt/llive/localhost && \
+    cd /etc/letsencrypt/llive/localhost && \
     sed -i'' \
         -e 's/RANDFILE/#RANDFILE/' \
         /etc/ssl/openssl.cnf && \
