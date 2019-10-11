@@ -44,4 +44,9 @@ fi
 # run command
 
 echo "Executing command..."
-exec certbot "$@"
+if exec certbot "$@";
+then
+    echo "certbot exited with success"
+else
+    echo "certbot exited with failure"
+fi
