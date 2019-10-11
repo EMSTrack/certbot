@@ -5,7 +5,7 @@ then
 
     echo "Local certificates already exist, skipping..."
 
-else;
+else
 
     echo "Generating local certificates..."
 
