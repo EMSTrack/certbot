@@ -29,6 +29,6 @@ RUN set -x && \
 
 WORKDIR /opt/certbot
 
-VOLUME ["/etc/certificates", "/etc/letsencrypt", "/var/lib/letsencrypt"]
+VOLUME ["/etc/certificates/localhost", "/etc/letsencrypt", "/var/lib/letsencrypt"]
 
 ENTRYPOINT [ "certbot" ]
