@@ -1,16 +1,13 @@
 # Using certbot image as a base
 FROM certbot/certbot
 
-RUN set -x && \
-    apk --no-cache add openssl && \
-    mkdir -p /etc/letsencrypt/live/localhost
-
 # generate certificates
-WORKDIR /etc/letsencrypt/live/localhost
-
 # COPY --chown=mosquitto:mosquitto etc/mosquitto/certificates /etc/mosquitto/certificates
 # https://github.com/openssl/openssl/issues/7754#issuecomment-444063355
 RUN set -x && \
+    apk --no-cache add openssl && \
+    mkdir -p /etc/letsencrypt/live/localhost
+    cd /etc/letsencrypt/live/localhost && \
     sed -i'' \
         -e 's/RANDFILE/#RANDFILE/' \
         /etc/ssl/openssl.cnf && \
