@@ -44,4 +44,4 @@ fi
 # run command
 
 echo "Executing command..."
-exec "$@"
+exec certbot "$@"
