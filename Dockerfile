@@ -6,29 +6,14 @@ FROM certbot/certbot
 # https://github.com/openssl/openssl/issues/7754#issuecomment-444063355
 RUN set -x && \
     apk --no-cache add openssl && \
-    mkdir -p /etc/certificates/localhost && \
-    cd /etc/certificates/localhost && \
-    sed -i'' \
-        -e 's/RANDFILE/#RANDFILE/' \
-        /etc/ssl/openssl.cnf && \
-    # https://mosquitto.org/man/mosquitto-tls-7.html
-    # RUN openssl genrsa -des3 -passout pass:cruzroja -out server.key 2048
-    openssl genrsa -passout pass:cruzroja -out server.key 2048 && \
-    openssl req -out server.csr -key server.key -passin pass:cruzroja -new \
-            -subj "/C=US/ST=CA/L=San Diego/O=EMSTrack Certification/OU=Certification/CN=localhost" && \
-    # https://asciinema.org/a/201826
-    #RUN openssl req -new -x509 -days 365 -extensions v3_ca -keyout my-ca.key -out my-ca.crt \
-    #    -passout pass:cruzroja -passin pass:cruzroja \
-    #    -subj "/C=US/ST=CA/L=San Diego/O=EMSTrack MQTT/OU=MQTT/CN=localhost"
-    openssl req -new -x509 -days 365 -keyout my-ca.key -out my-ca.crt \
-            -passout pass:cruzroja -passin pass:cruzroja \
-            -subj "/C=US/ST=CA/L=San Diego/O=EMSTrack MQTT/OU=MQTT/CN=localhost" && \
-    openssl x509 -req -in server.csr -CA my-ca.crt -CAkey my-ca.key -CAcreateserial \
-            -passin pass:cruzroja -out server.crt -days 180 && \
-    ls /etc/letsencrypt/live/localhost
+    mkdir -p /etc/certificates/localhost
 
 WORKDIR /opt/certbot
 
 VOLUME ["/etc/certificates/localhost", "/etc/letsencrypt", "/var/lib/letsencrypt"]
 
-ENTRYPOINT [ "certbot" ]
+# Set up the entry point script and default command
+COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
+EXPOSE 1883
+ENTRYPOINT ["/docker-entrypoint.sh"]
