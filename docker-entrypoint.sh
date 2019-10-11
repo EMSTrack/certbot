@@ -1,6 +1,6 @@
 #!/bin/ash
 
-if [-f /etc/certificates/localhost/server.key];
+if [ -e /etc/certificates/localhost/server.key ];
 then
 
     echo "Local certificates already exist, skipping..."
