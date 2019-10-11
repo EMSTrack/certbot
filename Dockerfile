@@ -6,8 +6,8 @@ FROM certbot/certbot
 # https://github.com/openssl/openssl/issues/7754#issuecomment-444063355
 RUN set -x && \
     apk --no-cache add openssl && \
-    mkdir -p /etc/letsencrypt/llive/localhost && \
-    cd /etc/letsencrypt/llive/localhost && \
+    mkdir -p /etc/certificates/localhost && \
+    cd /etc/certificates/localhost && \
     sed -i'' \
         -e 's/RANDFILE/#RANDFILE/' \
         /etc/ssl/openssl.cnf && \
@@ -29,6 +29,6 @@ RUN set -x && \
 
 WORKDIR /opt/certbot
 
-VOLUME ["/etc/letsencrypt", "/var/lib/letsencrypt"]
+VOLUME ["/etc/certificates", "/etc/letsencrypt", "/var/lib/letsencrypt"]
 
 ENTRYPOINT [ "certbot" ]
