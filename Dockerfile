@@ -1,8 +1,11 @@
 # Using certbot image as a base
 FROM certbot/certbot
 
+ARG PASSWORD=password
+ARG CA_PASSWORD=ca_password
+
 # generate certificates
-# COPY --chown=mosquitto:mosquitto etc/mosquitto/certificates /etc/mosquitto/certificates
+# COPY --chown=mosquitto:mosquitto etc/mosquitto/certbot /etc/mosquitto/certbot
 # https://github.com/openssl/openssl/issues/7754#issuecomment-444063355
 RUN set -x && \
     apk --no-cache add openssl && \
