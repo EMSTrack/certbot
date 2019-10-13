@@ -2,7 +2,7 @@
 FROM certbot/certbot
 
 ARG PASSWORD=password
-ARG CA_PASSWORD=ca_password
+ARG CA_PASSWORD=password
 
 # generate certificates
 # COPY --chown=mosquitto:mosquitto etc/mosquitto/certbot /etc/mosquitto/certbot
