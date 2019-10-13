@@ -31,16 +31,16 @@ else
 
     # https://asciinema.org/a/201826
     #RUN openssl req -new -x509 -days 365 -extensions v3_ca -keyout server-ca.key -out server-ca.crt \
-    #    -passout pass:cruzroja -passin pass:$CA_PASSWORD \
+    #    -passout pass:cruzroja -passin pass:cruzroja \
     #    -subj "/C=US/ST=CA/L=San Diego/O=EMSTrack MQTT/OU=MQTT/CN=localhost"
     openssl req -new -x509 -days 365 -keyout server-ca.key -out server-ca.crt \
-            -passout pass:$CA_PASSWORD -passin pass:cruzroja \
+            -passout pass:cruzroja -passin pass:cruzroja \
             -subj "/C=US/ST=CA/L=San Diego/O=EMSTrack MQTT/OU=MQTT/CN=localhost"
 
     ls
 
     openssl x509 -req -in server.csr -CA server-ca.crt -CAkey server-ca.key -CAcreateserial \
-            -passin pass:$CA_PASSWORD -out server.crt -days 180
+            -passin pass:cruzroja -out server.crt -days 180
 
     ls
 
