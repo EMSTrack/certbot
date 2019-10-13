@@ -10,8 +10,11 @@ It generates the files
 4. `server-ca.crt`
 5. `server-ca.key`
 
-in the directory `/etc/certificates/localhost`. The files `server.crt` and `server.key` can be used as
-a certificate/key pair in nginx, e.g.
+in the directory
+
+    /etc/certificates/localhost
+
+The files `server.crt` and `server.key` can be used as a certificate/key pair in nginx, e.g.
 
     ssl_certificate     /etc/certificates/localhost/server.crt;
     ssl_certificate_key /etc/certificates/localhost/server.key;
