@@ -1,8 +1,8 @@
 # Using certbot image as a base
 FROM certbot/certbot
 
-ARG PASSWORD=pass:password
-ARG CA_PASSWORD=pass:ca_password
+ENV PASSWORD=password
+ENV CA_PASSWORD=ca_password
 
 # generate certificates
 # COPY --chown=mosquitto:mosquitto etc/mosquitto/certificates/ /etc/mosquitto/certificates

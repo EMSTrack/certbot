@@ -21,4 +21,5 @@ The files `server.crt` and `server.key` can be used as a certificate/key pair in
 
 and the file `server-ca.crt` as a certification authority certificate.
 
-The certificates and certificate authority paasswords can be set as args `PASSWORD` and `CA_PASSWORD`.
+The certificates and certificate authority paasswords can be set as
+environment variables `PASSWORD` and `CA_PASSWORD`.
