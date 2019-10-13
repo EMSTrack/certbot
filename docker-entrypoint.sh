@@ -18,7 +18,7 @@ else
 
     # https://mosquitto.org/man/mosquitto-tls-7.html
     # RUN openssl genrsa -des3 -passout pass:$PASSWORD -out server.key 2048
-    openssl genrsa -passout pass:$PASSWORD -out server.key 2048
+    openssl genrsa -passout pass:$PASSWORD -out server.key 4096
 
     openssl req -out server.csr -key server.key -passin pass:$PASSWORD -new \
             -subj "/C=US/ST=CA/L=San Diego/O=EMSTrack Certification/OU=Certification/CN=localhost"
@@ -32,7 +32,7 @@ else
             -subj "/C=US/ST=CA/L=San Diego/O=EMSTrack MQTT/OU=MQTT/CN=localhost"
 
     openssl x509 -req -in server.csr -CA server-ca.crt -CAkey server-ca.key -CAcreateserial \
-            -passin pass:$PASSWORD -out server.crt -days 180
+            -passin pass:$CA_PASSWORD -out server.crt -days 180
 
     cd /opt/certbot
 
