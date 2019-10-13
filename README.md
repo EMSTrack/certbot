@@ -1,6 +1,6 @@
 # certbot
 
-This builds a container based on the [certbot/certbot](https://hub.docker.com/r/certbot/certbot/) image.
+Builds a container based on the [certbot/certbot](https://hub.docker.com/r/certbot/certbot/) image.
 
 It generates the files
 
