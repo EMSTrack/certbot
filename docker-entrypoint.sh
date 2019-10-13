@@ -12,6 +12,8 @@ else
     mkdir -p /etc/certificates/localhost
     cd /etc/certificates/localhost
 
+    ls
+
     sed -i'' \
         -e 's/RANDFILE/#RANDFILE/' \
         /etc/ssl/openssl.cnf
@@ -20,8 +22,12 @@ else
     # RUN openssl genrsa -des3 -passout pass:$PASSWORD -out server.key 2048
     openssl genrsa -passout pass:$PASSWORD -out server.key 4096
 
+    ls
+
     openssl req -out server.csr -key server.key -passin pass:$PASSWORD -new \
             -subj "/C=US/ST=CA/L=San Diego/O=EMSTrack Certification/OU=Certification/CN=localhost"
+
+    ls
 
     # https://asciinema.org/a/201826
     #RUN openssl req -new -x509 -days 365 -extensions v3_ca -keyout server-ca.key -out server-ca.crt \
@@ -31,8 +37,12 @@ else
             -passout pass:$CA_PASSWORD -passin pass:$PASSWORD \
             -subj "/C=US/ST=CA/L=San Diego/O=EMSTrack MQTT/OU=MQTT/CN=localhost"
 
+    ls
+
     openssl x509 -req -in server.csr -CA server-ca.crt -CAkey server-ca.key -CAcreateserial \
             -passin pass:$CA_PASSWORD -out server.crt -days 180
+
+    ls
 
     cd /opt/certbot
 
