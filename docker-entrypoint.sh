@@ -34,13 +34,13 @@ else
     #    -passout pass:cruzroja -passin pass:cruzroja \
     #    -subj "/C=US/ST=CA/L=San Diego/O=EMSTrack MQTT/OU=MQTT/CN=localhost"
     openssl req -new -x509 -days 365 -keyout server-ca.key -out server-ca.crt \
-            -passout pass:cruzroja -passin pass:cruzroja \
+            -passout pass:ca_cruzroja -passin pass:cruzroja \
             -subj "/C=US/ST=CA/L=San Diego/O=EMSTrack MQTT/OU=MQTT/CN=localhost"
 
     ls
 
     openssl x509 -req -in server.csr -CA server-ca.crt -CAkey server-ca.key -CAcreateserial \
-            -passin pass:cruzroja -out server.crt -days 180
+            -passin pass:ca_cruzroja -out server.crt -days 180
 
     ls
 
