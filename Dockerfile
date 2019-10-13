@@ -5,7 +5,7 @@ ARG PASSWORD=password
 ARG CA_PASSWORD=password
 
 # generate certificates
-# COPY --chown=mosquitto:mosquitto etc/mosquitto/certbot /etc/mosquitto/certbot
+# COPY --chown=mosquitto:mosquitto etc/mosquitto/certificates/ /etc/mosquitto/certificates
 # https://github.com/openssl/openssl/issues/7754#issuecomment-444063355
 RUN set -x && \
     apk --no-cache add openssl && \

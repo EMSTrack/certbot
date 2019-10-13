@@ -20,7 +20,7 @@ else
 
     # https://mosquitto.org/man/mosquitto-tls-7.html
     # RUN openssl genrsa -des3 -passout pass:$PASSWORD -out server.key 2048
-    openssl genrsa -passout pass:$PASSWORD -out server.key 4096
+    openssl genrsa -passout pass:$PASSWORD -out server.key 2048
 
     ls
 
